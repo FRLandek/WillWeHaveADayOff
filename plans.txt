@@ -1,0 +1,12 @@
+do this now:
+-return a string summary in client main
+-write utility script with methods that return the highest/lowest value in a list or average list
+-sum snow and ice, find lowest temp and windchill, find max wind speed
+
+
+
+do this stuff later:
+-Document things
+-Move callApi to its own utility script
+-Move nws to new weather services folder
+-Optimize
