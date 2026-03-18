@@ -10,3 +10,9 @@ do this stuff later:
 -Move callApi to its own utility script
 -Move nws to new weather services folder
 -Optimize
+-Add label saying its for North America only.
+
+
+HOW TO MAKE THIS WORK FOR EVERYTHERE IN AMERICA:
+-grab the user's part of america they live in (eg. midwest)
+-Tailor the calculation values for that specific region so that calculations can stay the same but with tweaked values

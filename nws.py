@@ -78,9 +78,12 @@ class nws:
             snowValues.append(snowData[i])
         count = 0
 
-
-
         iceData = data["properties"]["iceAccumulation"]["values"]
+
+
+
+        self.snowValues = snowValues
+        self.iceValues = iceValues
 
         return snowValues, iceValues
 
@@ -89,11 +92,11 @@ class nws:
     def __str__(self):
         return (
 f"""
-Data grabbed from the National Weather Service during school transportation times:
-THE VALUES SHOWN HERE ARE ONLY 5 VALUES IN ORDER FROM 5 TO 9 AM
 Base Temperatures (f): {self.tempValues}
 Wind Speed/Gust (mph): {self.windValues}
 Windchills (f): {self.windChills} 
+Snowfall by each period during transportation (in): {self.snowValues} 
+Ice accumulation by each period during transportation (in): {self.iceValues} 
 """
         )
 

@@ -22,8 +22,23 @@ class client:
 
         return tt, tw, tc, sv, iv, NWS
     
+    def mockData(self):
+        fn_t = -8
+        fn_c = -18
+        fn_w = 34
+        fn_s = 2.1
+        fn_i = .07
+        str_NWS = """
+Base Temperatures (f): [-7, -8, -8, -7, -6]
+Wind Speed/Gust (mph): [27, 32, 29, 34, 31]
+Windchills (f): [-15, -18, -17, -16, -14]
+Snowfall by each period during transportation (in): [1.2, 0.9]
+Ice accumulation by each period during transportation (in): [0.04, 0.03]
+"""
+        percent, label = self.calculate(fn_t, fn_c, fn_w, fn_s, fn_i)
+        return str_NWS, percent, label
 
-    def calculate(fn_t, fn_c, fn_w, fn_s, fn_i):
+    def calculate(self, fn_t, fn_c, fn_w, fn_s, fn_i):
         if (fn_c <= -30) or (fn_t <= -15) or (fn_i >= .25) or (fn_s >= 8):
             percent = 100
             label = "Guaranteed"

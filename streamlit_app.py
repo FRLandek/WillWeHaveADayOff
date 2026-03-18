@@ -2,9 +2,12 @@ import streamlit as st
 from client import client
 from datetime import date, timedelta
 
-def call(zip, time):
+def call(zip, time, mock):
     c = client()
-    return c.main(zip, time)
+    if mock:
+        return c.mockData()
+    else:
+        return c.main(zip, time)
 
 def main():
 
@@ -19,20 +22,29 @@ def main():
     if time > date.today() + timedelta(days=6):
         st.warning("Checking a date past 7 days from now may return inaccurate results!", icon="⚠️")
 
+    with st.expander("Debug"):
+        mock = st.checkbox("Mock Data")
+
     if st.button("Go!", type="primary", shortcut="Enter"):
-        tt, tw, tc, sv, iv, str_NWS = call(zip, time)
-        # st.write("Temps (f):", tt)
-        # st.write("Windchills (f):", tc)
-        # st.write("Wind (mph):", tt)
+        st.divider()
+
+        #---- SHOWING ALL THE VALUES --------------
+        # tt, tw, tc, sv, iv, str_NWS = call(zip, time, mock)
+        # # st.write("Temps (f):", tt)
+        # # st.write("Windchills (f):", tc)
+        # # st.write("Wind (mph):", tt)
+        # st.write("Snow:", sv)
+        # st.write("National Weather Service Data (5-9 AM):")
+        # st.code(str_NWS, language="text")
+
+
+        #---- FINAL PRINT ------------------
+        str_NWS, percent, chance = call(zip, time, mock)
+        st.subheader("Chance:")
+        st.subheader(percent)
+        st.subheader(chance)
         st.write("Exact NWS Data:")
         st.code(str_NWS)
-
-        # str_NWS, percent, chance = call(zip, time)
-        # st.subheader("Chance:")
-        # st.subheader(percent)
-        # st.subheader(chance)
-        # st.write("Exact NWS Data:")
-        # st.code(str_NWS)
 main()
 
 
